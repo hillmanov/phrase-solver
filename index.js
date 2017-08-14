@@ -26,12 +26,10 @@ function solve(puzzle, options) {
         let dedupedResultSet = _(fullResultSet)
                                 .map(row => row.join(' '))
                                 .uniq()
+                                .take(30)
                                 .value();
 
-        _.each(dedupedResultSet.slice(0, 30), (result, index) => {
-          console.log((index + 1) + ': ' + result);
-        });
-        return;
+        return resolve(dedupedResultSet);
       }
       if (currentWordIndex + 3 <= numberOfWords && !skipTrigram) {
         let trigramQuery = regexParts.slice(currentWordIndex, currentWordIndex + 3);
@@ -142,4 +140,8 @@ function cartesianProductOf() {
     }, [ [] ]);
 };
 
-solve('t__g_ __r___t', { exclude: 'rstlnempcag'});  // Example from an actual game
+// solve('t__g_ __r___t', { exclude: 'rstlnempcag'})
+
+module.exports = {
+  solve
+};
