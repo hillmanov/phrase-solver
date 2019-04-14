@@ -1,0 +1,18 @@
+version: '2'
+services:
+  python:
+    build:
+      context: .
+    working_dir: /app
+    command: python populateDb.py
+    volumes:
+      - ./:/app
+    links:
+      - db:db
+  db:
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: phrase_solver
+      POSTGRES_PASSWORD: phrase_solver
