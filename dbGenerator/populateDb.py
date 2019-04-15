@@ -32,8 +32,8 @@ with open('./initDb.sql', 'r') as sql:
 
 conn.commit();
 
-# corpuses = [brown, treebank, movie_reviews, words_list, wordnet, abc, genesis]
-corpuses = [brown]
+corpuses = [brown, treebank, movie_reviews, words_list, wordnet, abc, genesis]
+# corpuses = [brown]
 
 def cleanWordList(wordList):
     return [w.lower().replace("'", '') for w in wordList if w.isalpha() and w.strip() not in ("''", "'")]

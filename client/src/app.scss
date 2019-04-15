@@ -1,0 +1,46 @@
+.app {
+  background-color: #282c34;
+  min-height: 100vh;
+}
+
+.header {
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 7px;
+  padding-top: 24px;
+  font-size: 48px;
+  text-align: center;
+}
+
+.content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+  .form {
+    margin-bottom: 10px;
+    label {
+      color: white !important;
+    }
+    .input {
+      font-size: 24px;
+      width: 700px !important;
+      margin-right: 14px !important;
+    }
+  }
+  .button {
+    font-size: 34px;
+  }
+}
+
+.solutions {
+  color: white;
+  font-size: 24px;
+}
+

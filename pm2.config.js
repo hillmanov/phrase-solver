@@ -2,7 +2,8 @@ const path = require('path');
 module.exports = {
   apps: [{
     name: 'Phrase Solver - DB',
-    script: '/usr/local/bin/docker-compose -f ./dbGenerator/docker-compose.yml up db',
+    cwd: path.join(__dirname, 'dbGenerator'),
+    script: 'docker-compose up db',
     interpreter: 'none',
     watch: false,
   }, {
