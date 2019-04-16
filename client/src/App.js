@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './app.scss';
 import { Input, Button, Form, List } from 'semantic-ui-react';
 import axios from 'axios';
-import { observable, computed, action, decorate } from 'mobx';
+import { observable, action, decorate } from 'mobx';
 import { observer, Observer } from 'mobx-react';
 
 class App extends Component {
