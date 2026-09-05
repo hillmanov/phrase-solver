@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const Promise = require('bluebird');
 const { Client } = require('pg');
+
 const db = new Client({
   user: 'phrase_solver',
   host: 'localhost',
