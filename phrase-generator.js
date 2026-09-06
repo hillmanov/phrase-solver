@@ -1,39 +1,41 @@
-const _        = require('lodash');
-const sqlite3  = require('sqlite3');
-const db = new sqlite3.Database(__dirname + '/db.sqlite');
+import { Solver } from './index.js';
 
-function buildPhrase(phrase = [], depth = 0, cb) {
-  console.log('phrase, depth', phrase, depth);
-  if (depth === 15) {
-    return cb(null, phrase.join(' '));
+const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+export async function buildPhrase(depth = 15) {
+  const solver = new Solver();
+  const phrase = [];
+  try {
+    for (let i = 0; i < depth; i++) {
+      let rows = [];
+      if (phrase.length >= 2) {
+        rows = await solver.query(
+          `SELECT word FROM trigram WHERE context_1 = $1 AND context_2 = $2
+           ORDER BY frequency DESC LIMIT 50`,
+          [phrase[phrase.length - 2], phrase[phrase.length - 1]]
+        );
+      }
+      if (!rows.length && phrase.length >= 1) {
+        rows = await solver.query(
+          `SELECT word FROM trigram WHERE context_2 = $1
+           ORDER BY frequency DESC LIMIT 50`,
+          [phrase[phrase.length - 1]]
+        );
+      }
+      if (!rows.length) {
+        rows = await solver.query(
+          `SELECT word FROM trigram ORDER BY frequency DESC LIMIT 100`
+        );
+      }
+      if (!rows.length) break;
+      phrase.push(sample(rows).word);
+    }
+  } finally {
+    await solver.sql.end();
   }
-  if (phrase.length === 0) {
-    db.all(`SELECT * FROM trigram
-           ORDER BY frequency DESC
-           LIMIT 100`, (err, trigrams) => {
-             const chosen = _.sample(trigrams);
-             phrase = getPhrase(chosen);
-             return buildPhrase(phrase, depth + 1, cb);
-           });
-  } else {
-    db.all(`SELECT * FROM trigram
-            WHERE context_1 = '${_.last(phrase)}'
-           ORDER BY frequency DESC
-           LIMIT 100`, (err, trigrams) => {
-             const chosen = _.sample(trigrams);
-             console.log('Chosen', chosen);
-             phrase.push(..._.takeRight(getPhrase(chosen), 2));
-             console.log('Built', phrase);
-             return buildPhrase(phrase, depth + 1, cb);
-           });
-  }
+  return phrase.join(' ');
 }
 
-function getPhrase(trigram) {
-  return [trigram.context_1, trigram.context_2, trigram.word];
-
+if (import.meta.main) {
+  buildPhrase().then(console.log).catch((err) => { console.error(err); process.exit(1); });
 }
-
-buildPhrase([], 0, (err, phrase) => {
-  console.log(phrase);
-});

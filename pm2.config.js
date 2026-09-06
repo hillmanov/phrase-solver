@@ -1,21 +1,19 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 module.exports = {
   apps: [{
     name: 'Phrase Solver - DB',
-    cwd: path.join(__dirname, 'dbGenerator'),
-    script: 'docker-compose up db',
-    interpreter: 'none',
-    watch: false,
-  }, {
-    name: 'Phrase Solver - Client',
-    cwd: path.join(__dirname, 'client'),
-    script: 'yarn start',
+    cwd: __dirname,
+    script: 'docker compose -f compose.local.yaml up -d db',
     interpreter: 'none',
     watch: false,
   }, {
     name: 'Phrase Solver - Server',
-    script: 'server/index.js',
-    ignore_watch: ['node_modules', 'client', 'build', '.git'],
+    script: 'bun server/index.js',
+    interpreter: 'none',
+    ignore_watch: ['node_modules', 'client', 'dist', '.git'],
     watch: true,
   }]
 };

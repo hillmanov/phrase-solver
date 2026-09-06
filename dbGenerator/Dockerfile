@@ -1,8 +1,7 @@
-FROM python:3.6-alpine
+FROM python:3.12-alpine
 
 RUN apk update && \
-    apk add postgresql-dev gcc python3-dev musl-dev && \
-    pip install -U nltk
+    apk add --no-cache postgresql-dev gcc python3-dev musl-dev && \
+    pip install --no-cache-dir --break-system-packages nltk psycopg2-binary
 
-RUN pip install psycopg2
-
+WORKDIR /app

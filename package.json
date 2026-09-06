@@ -2,31 +2,18 @@
   "author": "Scott Hillman",
   "name": "phrase-solver",
   "description": "Solves wheel of fortune puzzles",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/hillmanov/node-wofkov.git"
   },
+  "type": "module",
   "main": "index.js",
-  "dependencies": {
-    "axios": "^0.18.0",
-    "bluebird": "^3.5.4",
-    "express": "^4.16.4",
-    "lodash": "~4.11.0",
-    "mobx": "^5.9.4",
-    "mobx-react": "^5.4.3",
-    "mobx-state-tree": "^3.14.0",
-    "node-sass": "^4.11.0",
-    "pg": "^7.9.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "semantic-ui-react": "^0.86.0",
-    "sqlite": "^3.0.3",
-    "sqlite3": "^3.1.3"
+  "scripts": {
+    "start": "bun server/index.js",
+    "dev": "bun --watch server/index.js"
   },
-  "devDependencies": {},
-  "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "bun": ">=1.2"
   }
 }

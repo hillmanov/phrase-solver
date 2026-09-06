@@ -1,5 +1,6 @@
 # Logs
 data
+dbGenerator/data
 .DS_Store
 logs
 *.log
@@ -27,6 +28,9 @@ build/Release
 
 # Dependency directory
 node_modules
+
+# Client build output
+client/dist
 
 # Optional npm cache directory
 .npm
