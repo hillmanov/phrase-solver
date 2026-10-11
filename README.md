@@ -27,8 +27,10 @@ make run     # API :3002 + Vite :3001
 
 ```sh
 make build   # build client into client/dist
-pm2 start pm2.config.js
 ```
+
+Prod runs from the homelab-wide `~/homelab/pm2.config.js` (entries "Phrase Solver" and
+"Phrase Solver - DB"). Restart with `pm2 restart "Phrase Solver"`.
 
 ## Regenerate the corpus DB (destructive — drops/rewrites all tables)
 

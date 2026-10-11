@@ -37,3 +37,11 @@ client/dist
 
 # Optional REPL history
 .node_repl_history
+
+# Local env, databases and tool output
+.env
+.env.*
+!.env.example
+*.sqlite
+*.db
+.playwright-mcp/
