@@ -1,0 +1,4 @@
+[
+  {"ask": "Wheel of Fortune puzzle: W H _ _ L   _ F   F _ R T _ N _, and there's no S. What is it?", "tool": "phrase_solver_solve"},
+  {"ask": "Hangman: _ _ _ _ _ E with no A or T. What words fit?", "tool": "phrase_solver_solve"}
+]
