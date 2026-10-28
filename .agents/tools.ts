@@ -1,5 +1,5 @@
-// Phrase Solver's tools for the homelab MCP server (~/homelab/mcp): Wheel of Fortune style puzzles.
-import type { Http, Kit } from "../../mcp/kit";
+// Phrase Solver's tools: Wheel of Fortune style puzzles.
+import type { Http, Kit } from "../../tools/kit";
 
 export default (k: Kit) => {
   const z = k.z;
@@ -12,6 +12,7 @@ export default (k: Kit) => {
     description:
       "Solves Wheel of Fortune style word puzzles (Phrase Solver) from a pattern of known letters and blanks, plus letters known not to be in it. A partly filled-in phrase, a hangman pattern or a Wheel of Fortune board.",
     url: "http://127.0.0.1:3002",
+    icon: "client/public/icons/icon-192.png",
     reads: {
       solve: k.tool({
         title: "Solve a puzzle",
@@ -26,7 +27,7 @@ export default (k: Kit) => {
             ),
           exclude: z.string().default("").describe("Letters known not to be in the puzzle (rstle)"),
         },
-        async run(a, http) {
+        async run(a, { http }) {
           const puzzle = a.puzzle
             .toLowerCase()
             .replace(/[^a-z_\s]/g, "")

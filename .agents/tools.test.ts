@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { appTools } from "../../mcp/test-kit";
+import { appTools } from "../../tools/test-kit";
 
 const t = await appTools("phrase-solver");
 
