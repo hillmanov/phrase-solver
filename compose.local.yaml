@@ -1,7 +1,7 @@
 services:
   db:
     container_name: phrase-solver.db
-    image: postgres:17-alpine
+    image: postgres:18-alpine
     ports:
       - "5433:5432"
     environment:
@@ -9,5 +9,5 @@ services:
       POSTGRES_USER: phrase_solver
       POSTGRES_PASSWORD: "phrase_solver"
     volumes:
-      - ./dbGenerator/data:/var/lib/postgresql/data
+      - ./dbGenerator/data:/var/lib/postgresql
     restart: unless-stopped

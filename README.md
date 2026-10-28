@@ -8,9 +8,9 @@ uni/bi/trigram word frequencies mined from nltk corpora.
 
 - `index.js` — solver library (`solve(puzzle, exclude)`), Bun-native via `Bun.SQL`
 - `server/index.js` — `Bun.serve` API on **:3002**, serves the built client
-- `client/` — Vite + React 18 + mobx 6 (dev server on **:3001**, proxies `/solve`)
+- `client/` — Vite + React 19 + mobx 7 (dev server on **:3001**, proxies `/solve`)
 - `dbGenerator/` — nltk corpus → Postgres importer
-- `compose.local.yaml` — Postgres 17 on host port **5433**
+- `compose.local.yaml` — Postgres 18 on host port **5433**
 
 Runtime is [Bun](https://bun.com) (built-in HTTP server + native Postgres
 driver — zero runtime npm dependencies).

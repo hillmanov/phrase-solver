@@ -1,6 +1,8 @@
 # Logs
 data
 dbGenerator/data
+dbGenerator/data-pg17
+pg17-dumpall-*.sql
 .DS_Store
 logs
 *.log
